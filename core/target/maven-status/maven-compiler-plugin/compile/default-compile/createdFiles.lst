@@ -1,5 +1,6 @@
-com/cloud/example/domain/ValidateGroup$GroupA.class
 com/cloud/example/domain/ValidateGroup.class
 com/cloud/example/domain/ValidateGroup$GroupB.class
 com/cloud/example/config/Config.class
+com/cloud/example/domain/ValidateGroup$GroupA.class
+com/cloud/example/enums/OrderStatusEnum.class
 com/cloud/example/domain/ValidateGroup$GroupC.class

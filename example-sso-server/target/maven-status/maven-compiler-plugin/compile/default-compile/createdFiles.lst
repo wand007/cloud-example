@@ -1,1 +1,4 @@
 com/example/demo/ExampleSsoServerApplication.class
+com/example/demo/service/ISsoService.class
+com/example/demo/service/impl/SsoService.class
+com/example/demo/client/WebSsoClient.class
