@@ -1,5 +1,0 @@
-com/cloud/example/controller/UserController.class
-com/cloud/example/client/IUserFeign.class
-com/cloud/example/client/fallback/UserFallback.class
-com/cloud/example/ExampleSsoWebApplication.class
-com/cloud/example/base/BaseController.class
