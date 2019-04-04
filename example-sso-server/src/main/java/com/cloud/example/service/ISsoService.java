@@ -1,4 +1,4 @@
-package com.example.demo.service;
+package com.cloud.example.service;
 
 /**
  * @author ; lidongdong

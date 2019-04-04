@@ -1,4 +1,4 @@
-package com.example.demo.client;
+package com.cloud.example.client;
 
 import com.cloud.example.base.BaseClient;
 import com.cloud.example.base.ResultResponse;

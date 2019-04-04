@@ -1,8 +1,8 @@
-package com.example.demo.service.impl;
+package com.cloud.example.service.impl;
 
 import com.cloud.example.dao.UserRepository;
 import com.cloud.example.domain.UserDAO;
-import com.example.demo.service.ISsoService;
+import com.cloud.example.service.ISsoService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
