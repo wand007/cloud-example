@@ -26,7 +26,6 @@ public class UserController extends BaseController {
     @ResponseBody
     @RequestMapping(value = "/findDetail")
     public ResultResponse findDetail(String id) {
-
         return iUserFeign.findDetail(id);
     }
 }

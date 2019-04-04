@@ -57,6 +57,11 @@ eureka:
     serviceUrl:
       defaultZone: http://127.0.0.1:8761/eureka/
 
+#开启hystrix
+feign:
+  hystrix:
+    enabled: true
+
 #hystrix的超时时间
 hystrix:
   command:
@@ -68,12 +73,12 @@ hystrix:
           thread:
             timeoutInMilliseconds: 9000
 #设置ribbon重试间隔
-#ribbon:
-#  ReadTimeout: 3000
-#  ConnectTimeout: 3000
-#  MaxAutoRetries: 1 #同一台实例最大重试次数,不包括首次调用
-#  MaxAutoRetriesNextServer: 1 #重试负载均衡其他的实例最大重试次数,不包括首次调用
-#  OkToRetryOnAllOperations: false  #是否所有操作都重试
+ribbon:
+  ReadTimeout: 3000
+  ConnectTimeout: 3000
+  MaxAutoRetries: 1 #同一台实例最大重试次数,不包括首次调用
+  MaxAutoRetriesNextServer: 1 #重试负载均衡其他的实例最大重试次数,不包括首次调用
+  OkToRetryOnAllOperations: false  #是否所有操作都重试
 
 
 #服务地址
