@@ -1,6 +1,12 @@
+com/cloud/example/base/ResultResponse.class
 com/cloud/example/domain/ValidateGroup.class
 com/cloud/example/domain/ValidateGroup$GroupB.class
 com/cloud/example/config/Config.class
+com/cloud/example/domain/sso/SsoUser.class
+com/cloud/example/base/BusinessException.class
+com/cloud/example/domain/sso/SsoUserBase.class
+com/cloud/example/domain/ValidateGroup$GroupC.class
+com/cloud/example/base/BusinessCode.class
 com/cloud/example/domain/ValidateGroup$GroupA.class
 com/cloud/example/enums/OrderStatusEnum.class
-com/cloud/example/domain/ValidateGroup$GroupC.class
+com/cloud/example/base/BaseClient.class

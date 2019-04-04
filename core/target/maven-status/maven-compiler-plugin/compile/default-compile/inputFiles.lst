@@ -1,2 +1,9 @@
+/Users/lidongdong/Private/Mycode/cloud-example/core/src/main/java/com/cloud/example/base/BusinessCode.java
+/Users/lidongdong/Private/Mycode/cloud-example/core/src/main/java/com/cloud/example/base/ResultResponse.java
 /Users/lidongdong/Private/Mycode/cloud-example/core/src/main/java/com/cloud/example/config/Config.java
 /Users/lidongdong/Private/Mycode/cloud-example/core/src/main/java/com/cloud/example/domain/ValidateGroup.java
+/Users/lidongdong/Private/Mycode/cloud-example/core/src/main/java/com/cloud/example/base/BusinessException.java
+/Users/lidongdong/Private/Mycode/cloud-example/core/src/main/java/com/cloud/example/domain/sso/SsoUser.java
+/Users/lidongdong/Private/Mycode/cloud-example/core/src/main/java/com/cloud/example/enums/OrderStatusEnum.java
+/Users/lidongdong/Private/Mycode/cloud-example/core/src/main/java/com/cloud/example/domain/sso/SsoUserBase.java
+/Users/lidongdong/Private/Mycode/cloud-example/core/src/main/java/com/cloud/example/base/BaseClient.java

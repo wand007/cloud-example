@@ -1,8 +1,10 @@
-package com.cloud.example.client;
+package com.cloud.example.controller;
 
-import com.cloud.example.base.BaseClient;
+import com.cloud.example.base.BaseController;
 import com.cloud.example.base.ResultResponse;
+import com.cloud.example.client.IUserFeign;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -10,25 +12,21 @@ import org.springframework.web.bind.annotation.RestController;
 /**
  * @author ; lidongdong
  * @Description
- * @Date 2019/4/2
+ * @Date 2019/4/4
  */
 @Slf4j
 @RestController
-@RequestMapping(value = "/sso")
-public class WebSsoClient extends BaseClient {
+@RequestMapping("user")
+public class UserController extends BaseController {
 
-    @ResponseBody
-    @RequestMapping(value = "/login")
-    public ResultResponse login(String param) {
 
-        return ResultResponse.success();
-    }
+    @Autowired
+    IUserFeign iUserFeign;
 
     @ResponseBody
     @RequestMapping(value = "/findDetail")
     public ResultResponse findDetail(String id) {
-        log.info(id);
-        return ResultResponse.success(id);
-    }
 
+        return iUserFeign.findDetail(id);
+    }
 }

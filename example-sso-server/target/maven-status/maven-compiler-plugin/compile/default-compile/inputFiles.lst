@@ -1,1 +1,4 @@
-/Users/lidongdong/Private/Mycode/cloud-example/example-sso-server/src/main/java/com/example/demo/ExampleSsoServerApplication.java
+/Users/lidongdong/Private/Mycode/cloud-example/example-sso-server/src/main/java/com/cloud/example/service/ISsoService.java
+/Users/lidongdong/Private/Mycode/cloud-example/example-sso-server/src/main/java/com/cloud/example/ExampleSsoServerApplication.java
+/Users/lidongdong/Private/Mycode/cloud-example/example-sso-server/src/main/java/com/cloud/example/service/impl/SsoService.java
+/Users/lidongdong/Private/Mycode/cloud-example/example-sso-server/src/main/java/com/cloud/example/client/WebSsoClient.java

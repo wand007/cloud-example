@@ -1,4 +1,4 @@
-com/example/demo/ExampleSsoServerApplication.class
-com/example/demo/service/ISsoService.class
-com/example/demo/service/impl/SsoService.class
-com/example/demo/client/WebSsoClient.class
+com/cloud/example/service/impl/SsoService.class
+com/cloud/example/ExampleSsoServerApplication.class
+com/cloud/example/client/WebSsoClient.class
+com/cloud/example/service/ISsoService.class

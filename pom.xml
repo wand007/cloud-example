@@ -13,6 +13,7 @@
         <module>dao</module>
         <module>eureka</module>
         <module>example-sso-server</module>
+        <module>example-sso-web</module>
     </modules>
 
     <parent>
