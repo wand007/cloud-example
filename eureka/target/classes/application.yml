@@ -12,7 +12,7 @@ eureka:
     serviceUrl:
       defaultZone: http://localhost:8761/eureka/ # 设置与Eureka Server交互的地址，默认为http://localhost:8761/eureka，多个地址用逗号（,）分隔
 
-logging:
-  file: logs/eureka-server.log  # 打印日志到文件
-  level:
-    ROOT: INFO
+#logging:
+#  file: logs/eureka-server.log  # 打印日志到文件
+#  level:
+#    ROOT: INFO

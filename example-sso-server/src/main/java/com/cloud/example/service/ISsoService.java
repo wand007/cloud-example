@@ -1,5 +1,7 @@
 package com.cloud.example.service;
 
+import com.cloud.example.domain.UserDAO;
+
 /**
  * @author ; lidongdong
  * @Description
@@ -7,5 +9,5 @@ package com.cloud.example.service;
  */
 public interface ISsoService {
 
-    public void verifyPassword(String username, String password);
+    public UserDAO verifyPassword(String username, String password);
 }
