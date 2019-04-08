@@ -51,8 +51,7 @@ public class ResultResponse<T> implements Serializable {
 
     public static <T> ResultResponse<T> error() {
         return new ResultResponse(BusinessCode.ERROR.getCode(), BusinessCode.ERROR.getDesc(), null, System
-                .currentTimeMillis()
-                + "");
+                .currentTimeMillis() + "");
     }
 
 
