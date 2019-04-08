@@ -20,7 +20,7 @@ public interface IUserFeign {
 
 
     @ResponseBody
-    @RequestMapping(value = "/user/findDetail", method = RequestMethod.POST)
+    @RequestMapping(value = "/user/findDetail", method = RequestMethod.GET)
     ResultResponse findDetail(@RequestParam(value = "id") String id);
 
     @ResponseBody

@@ -13,10 +13,10 @@ public class SsoSessionIdHelper {
     /**
      * make client sessionId
      *
-     * @param xxlSsoUser
+     * @param ssoUser
      * @return
      */
-    public static String makeSessionId(SsoUser xxlSsoUser){
+    public static String makeSessionId(SsoUser ssoUser){
         return UUID.randomUUID().toString().replaceAll("-", "");
     }
 

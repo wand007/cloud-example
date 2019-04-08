@@ -6,6 +6,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Component;
 
+import java.util.HashMap;
+import java.util.Map;
+import java.util.concurrent.TimeUnit;
+
 /**
  * @author ; lidongdong
  * @Description
@@ -62,15 +66,20 @@ public class SsoLoginStore {
      * put
      *
      * @param storeKey
-     * @param xxlUser
+     * @param ssoUser
      */
-    public void put(String storeKey, SsoUser xxlUser) {
+    public void put(String storeKey, SsoUser ssoUser) {
         String redisKey = redisKey(storeKey);
-        redisTemplate.opsForHash().put(redisKey, xxlUser, redisExpireMinite * 60);  // minite to second
+        Map<String, SsoUser> map = new HashMap<>(4);
+        map.put(storeKey, ssoUser);
+
+        redisTemplate.opsForValue().set(redisKey, ssoUser);  // minite to second
+        redisTemplate.expire(redisKey, Long.valueOf(redisExpireMinite * 60), TimeUnit.HOURS);
     }
 
     private String redisKey(String sessionId) {
         return SsoConfig.SSO_SESSIONID.concat("#").concat(sessionId);
     }
+
 
 }

@@ -26,7 +26,7 @@ public class UserClient extends BaseClient {
 
     @ResponseBody
     @RequestMapping(value = "/findDetail")
-    public ResultResponse findDetail(String id) {
+    public ResultResponse<UserDAO> findDetail(String id) {
         UserDAO userDAO = iUserService.findOne(id);
         return ResultResponse.success(userDAO);
     }
@@ -34,7 +34,7 @@ public class UserClient extends BaseClient {
 
     @ResponseBody
     @RequestMapping(value = "/add", method = RequestMethod.POST)
-    public ResultResponse add(@RequestBody UserParam param) {
+    public ResultResponse<String> add(@RequestBody UserParam param) {
 
         UserDAO userDAO = iUserService.add(param);
 

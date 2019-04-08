@@ -21,7 +21,7 @@ public class SsoService implements ISsoService {
 
     @Override
     public UserDAO checkPassword(String username, String password) {
-        UserDAO userDAO = userRepository.findByPassword("");
+        UserDAO userDAO = userRepository.findByNickNameAndPassword(username, password);
         return userDAO;
     }
 }

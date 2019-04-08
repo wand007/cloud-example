@@ -1,6 +1,8 @@
 package com.cloud.example.filter;
 
 import com.cloud.example.base.BodyReaderHttpServletRequestWrapper;
+import com.cloud.example.domain.sso.SsoUser;
+import com.cloud.example.login.SsoWebLoginHelper;
 import com.cloud.example.utils.IpUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
@@ -28,6 +30,8 @@ public class LoginFilter implements Filter {
 
     @Autowired
     RedisTemplate redisTemplate;
+    @Autowired
+    SsoWebLoginHelper ssoWebLoginHelper;
 
 
     @Override
@@ -41,7 +45,8 @@ public class LoginFilter implements Filter {
      */
     private static final Set<String> notLoginList = new HashSet<String>() {
         {
-
+            add("/login");
+            add("/logout");
         }
     };
 
@@ -87,13 +92,13 @@ public class LoginFilter implements Filter {
 
 
         //设置用户信息
-//        SessionUserCreditVO sessionUser = sessionUserCreditComm.userWithCheck(requestWrapper, response, ip);
-//        if (null == sessionUser) {
-//            return;
-//        }
-//
-//        //设置用户信息
-//        request.setAttribute("sessionUser", sessionUser);
+        SsoUser ssoUser = ssoWebLoginHelper.loginCheck(requestWrapper, response);
+        if (null == ssoUser) {
+            return;
+        }
+
+        //设置用户信息
+        request.setAttribute("ssoUser", ssoUser);
 
         filterChain.doFilter(requestWrapper, response);
         return;

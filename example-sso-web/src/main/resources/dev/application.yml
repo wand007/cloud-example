@@ -92,4 +92,4 @@ ribbon:
 #服务地址
 service:
   url:
-    user: http://userService-dev/
+    user: http://example-sso-server-dev/

@@ -21,24 +21,35 @@ public class SsoWebLoginHelper {
     SsoTokenLoginHelper ssoTokenLoginHelper;
 
     /**
+     * make client sessionId
+     *
+     * @param ssoUser
+     * @return
+     */
+    public String makeSessionId(SsoUser ssoUser) {
+        String sessionId = ssoUser.getUserId().concat("_").concat(ssoUser.getVersion());
+        return sessionId;
+    }
+
+    /**
      * client login
      *
      * @param response
      * @param sessionId
      * @param ifRemember true: cookie not expire, false: expire when browser close （server cookie）
-     * @param xxlUser
+     * @param ssoUser
      */
-    public  void login(HttpServletResponse response,
-                             String sessionId,
-                             SsoUser xxlUser,
-                             boolean ifRemember) {
+    public void login(HttpServletResponse response,
+                      String sessionId,
+                      SsoUser ssoUser,
+                      boolean ifRemember) {
 
         String storeKey = SsoSessionIdHelper.parseStoreKey(sessionId);
         if (storeKey == null) {
             throw new RuntimeException("parseStoreKey Fail, sessionId:" + sessionId);
         }
 
-        ssoLoginStore.put(storeKey, xxlUser);
+        ssoLoginStore.put(storeKey, ssoUser);
         CookieUtil.set(response, SsoConfig.SSO_SESSIONID, sessionId, ifRemember);
     }
 
@@ -48,8 +59,8 @@ public class SsoWebLoginHelper {
      * @param request
      * @param response
      */
-    public  void logout(HttpServletRequest request,
-                              HttpServletResponse response) {
+    public void logout(HttpServletRequest request,
+                       HttpServletResponse response) {
 
         String cookieSessionId = CookieUtil.getValue(request, SsoConfig.SSO_SESSIONID);
         if (cookieSessionId == null) {
@@ -72,7 +83,7 @@ public class SsoWebLoginHelper {
      * @param response
      * @return
      */
-    public  SsoUser loginCheck(HttpServletRequest request, HttpServletResponse response) {
+    public SsoUser loginCheck(HttpServletRequest request, HttpServletResponse response) {
 
         String cookieSessionId = CookieUtil.getValue(request, SsoConfig.SSO_SESSIONID);
 
@@ -105,7 +116,7 @@ public class SsoWebLoginHelper {
      * @param request
      * @param response
      */
-    public  void removeSessionIdByCookie(HttpServletRequest request, HttpServletResponse response) {
+    public void removeSessionIdByCookie(HttpServletRequest request, HttpServletResponse response) {
         CookieUtil.remove(request, response, SsoConfig.SSO_SESSIONID);
     }
 
@@ -115,7 +126,7 @@ public class SsoWebLoginHelper {
      * @param request
      * @return
      */
-    public  String getSessionIdByCookie(HttpServletRequest request) {
+    public String getSessionIdByCookie(HttpServletRequest request) {
         String cookieSessionId = CookieUtil.getValue(request, SsoConfig.SSO_SESSIONID);
         return cookieSessionId;
     }

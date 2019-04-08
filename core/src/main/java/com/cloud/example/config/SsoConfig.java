@@ -10,6 +10,6 @@ public class SsoConfig {
     /**
      * sso sessionid, between browser and sso-server (web + token client)
      */
-    public static final String SSO_SESSIONID = "xxl_sso_sessionid";
+    public static final String SSO_SESSIONID = "SSO_SESSIONID";
 
 }

@@ -9,6 +9,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
 /**
  * @author ; lidongdong
  * @Description
@@ -26,7 +28,8 @@ public class UserService implements IUserService {
 
     @Override
     public UserDAO findOne(String id) {
-        return userRepository.findById(id).get();
+        Optional<UserDAO> optional = userRepository.findById(id);
+        return optional.isPresent() ? optional.get() : null;
     }
 
     @Override

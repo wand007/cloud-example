@@ -15,9 +15,11 @@ public interface UserRepository extends JpaRepository<UserDAO, String>, JpaSpeci
     /**
      * 根据登陆密码查用户记录
      *
+     *
+     * @param username
      * @param password
      * @return
      */
-    UserDAO findByPassword(String password);
+    UserDAO findByNickNameAndPassword(String username, String password);
 
 }
