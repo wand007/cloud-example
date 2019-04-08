@@ -14,6 +14,8 @@ server:
 spring:
   application:
       name: example-sso-web-dev
+  main:
+      allow-bean-definition-overriding: true
   servlet:
     # 文件上传
     multipart:

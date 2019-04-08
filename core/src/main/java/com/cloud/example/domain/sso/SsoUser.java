@@ -34,6 +34,12 @@ public class SsoUser implements Serializable {
      */
     private String phoneNo;
 
+    private String version;
+
+    private int expireMinite;
+
+    private long expireFreshTime;
+
     /**
      * 用户缓存详情
      */

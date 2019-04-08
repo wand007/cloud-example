@@ -9,5 +9,5 @@ import com.cloud.example.domain.UserDAO;
  */
 public interface ISsoService {
 
-    public UserDAO verifyPassword(String username, String password);
+    public UserDAO checkPassword(String username, String password);
 }
