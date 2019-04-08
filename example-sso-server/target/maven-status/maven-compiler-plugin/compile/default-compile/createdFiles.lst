@@ -1,0 +1,7 @@
+com/cloud/example/ExampleSsoServerApplication.class
+com/cloud/example/service/ISsoService.class
+com/cloud/example/service/impl/UserService.class
+com/cloud/example/service/impl/SsoService.class
+com/cloud/example/service/IUserService.class
+com/cloud/example/client/WebSsoClient.class
+com/cloud/example/client/UserClient.class

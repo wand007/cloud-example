@@ -2,10 +2,9 @@ package com.cloud.example.client;
 
 import com.cloud.example.base.BaseClient;
 import com.cloud.example.base.ResultResponse;
+import com.cloud.example.domain.UserParam;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * @author ; lidongdong
@@ -24,11 +23,8 @@ public class WebSsoClient extends BaseClient {
         return ResultResponse.success();
     }
 
-    @ResponseBody
-    @RequestMapping(value = "/findDetail")
-    public ResultResponse findDetail(String id) {
-        log.info(id);
-        return ResultResponse.success(id);
-    }
+
+
+
 
 }

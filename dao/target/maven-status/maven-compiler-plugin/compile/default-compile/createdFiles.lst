@@ -1,0 +1,6 @@
+com/cloud/example/domain/ResourceDAO.class
+com/cloud/example/dao/UserRepository.class
+com/cloud/example/domain/OrderDAO.class
+com/cloud/example/dao/ResourceRepository.class
+com/cloud/example/domain/UserDAO.class
+com/cloud/example/dao/OrderRepository.class

@@ -1,6 +1,6 @@
 package com.cloud.example.filter;
 
-import com.cloud.example.domain.BodyReaderHttpServletRequestWrapper;
+import com.cloud.example.base.BodyReaderHttpServletRequestWrapper;
 import com.cloud.example.utils.IpUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
@@ -17,10 +17,9 @@ import java.util.HashSet;
 import java.util.Set;
 
 /**
- * @author peng
- * @description
- * @date 2019/2/21
- * @update by peng
+ * @author ; lidongdong
+ * @Description
+ * @Date 2019/4/4
  */
 @WebFilter(filterName = "loginFilter", urlPatterns = "/*")
 public class LoginFilter implements Filter {

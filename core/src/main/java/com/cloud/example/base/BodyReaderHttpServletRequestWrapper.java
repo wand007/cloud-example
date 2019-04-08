@@ -1,4 +1,4 @@
-package com.cloud.example.domain;
+package com.cloud.example.base;
 
 import com.cloud.example.enums.ERequestMethod;
 import com.cloud.example.utils.JsonUtils;
