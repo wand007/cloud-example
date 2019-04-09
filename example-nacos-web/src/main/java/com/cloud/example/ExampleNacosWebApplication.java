@@ -1,38 +1,40 @@
 package com.cloud.example;
 
+import com.alibaba.nacos.spring.context.annotation.config.NacosPropertySource;
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.PropertyAccessor;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.common.util.concurrent.ThreadFactoryBuilder;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.boot.web.servlet.ServletComponentScan;
-import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
+import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
+import org.springframework.cloud.client.loadbalancer.LoadBalanced;
 import org.springframework.context.annotation.Bean;
 import org.springframework.core.task.AsyncTaskExecutor;
 import org.springframework.data.redis.connection.RedisConnectionFactory;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.serializer.Jackson2JsonRedisSerializer;
 import org.springframework.data.redis.serializer.StringRedisSerializer;
-import org.springframework.scheduling.annotation.EnableAsync;
 import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
+import org.springframework.web.client.RestTemplate;
 
 import java.util.concurrent.ThreadPoolExecutor;
 
-/**
- * @author ; lidongdong
- * @Description
- * @Date 2019/4/4
- */
-@EnableAsync
-@EnableEurekaClient
+@EnableDiscoveryClient
 @SpringBootApplication
-@ServletComponentScan
-public class ExampleSsoServerApplication {
+@NacosPropertySource(dataId = "example-nacos-web-dev.properties", autoRefreshed = true)
+public class ExampleNacosWebApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(ExampleSsoServerApplication.class, args);
+        SpringApplication.run(ExampleNacosWebApplication.class, args);
     }
+
+    @Bean
+    @LoadBalanced
+    public RestTemplate restTemplate() {
+        return new RestTemplate();
+    }
+
 
     @Bean
     public AsyncTaskExecutor taskExecutor() {
@@ -41,7 +43,7 @@ public class ExampleSsoServerApplication {
         asyncTaskThreadPool.setMaxPoolSize(200);
         asyncTaskThreadPool.setQueueCapacity(11);
         asyncTaskThreadPool.setKeepAliveSeconds(30);
-        asyncTaskThreadPool.setThreadFactory(new ThreadFactoryBuilder().setNameFormat("Async-sso-example-%d").build());
+        asyncTaskThreadPool.setThreadFactory(new ThreadFactoryBuilder().setNameFormat("Async-nacos-example-%d").build());
         // rejection-policy：当pool已经达到max size的时候，如何处理新任务
         // CALLER_RUNS：不在新线程中执行任务，而是由调用者所在的线程来执行
         asyncTaskThreadPool.setRejectedExecutionHandler(new ThreadPoolExecutor.CallerRunsPolicy());
@@ -79,4 +81,5 @@ public class ExampleSsoServerApplication {
         redisTemplate.afterPropertiesSet();
         return redisTemplate;
     }
+
 }

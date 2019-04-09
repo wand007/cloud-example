@@ -1,6 +1,6 @@
 package com.cloud.example.controller;
 
-import com.cloud.example.base.BaseController;
+import com.cloud.example.base.BaseClient;
 import com.cloud.example.base.BusinessException;
 import com.cloud.example.base.ResultResponse;
 import com.cloud.example.client.IUserFeign;
@@ -21,7 +21,7 @@ import org.springframework.web.bind.annotation.*;
 @Slf4j
 @RestController
 @RequestMapping("user")
-public class UserController extends BaseController {
+public class UserController extends BaseClient {
 
 
     @Autowired
