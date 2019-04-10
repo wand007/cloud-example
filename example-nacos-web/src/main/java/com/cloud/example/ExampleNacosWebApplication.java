@@ -25,14 +25,14 @@ import java.util.concurrent.ThreadPoolExecutor;
 @NacosPropertySource(dataId = "example-nacos-web-dev.properties", autoRefreshed = true)
 public class ExampleNacosWebApplication {
 
-    public static void main(String[] args) {
-        SpringApplication.run(ExampleNacosWebApplication.class, args);
-    }
-
     @Bean
     @LoadBalanced
     public RestTemplate restTemplate() {
         return new RestTemplate();
+    }
+
+    public static void main(String[] args) {
+        SpringApplication.run(ExampleNacosWebApplication.class, args);
     }
 
 

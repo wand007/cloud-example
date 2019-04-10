@@ -8,6 +8,7 @@ import com.cloud.example.domain.sso.SsoUser;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.bind.annotation.RequestAttribute;
@@ -22,6 +23,7 @@ import org.springframework.web.client.RestTemplate;
  * @Date 2019/4/4
  */
 @Slf4j
+@RefreshScope
 @RestController
 @RequestMapping("user")
 public class UserController extends BaseClient {
@@ -36,8 +38,8 @@ public class UserController extends BaseClient {
 
     @ResponseBody
     @RequestMapping(value = "/findDetail")
-    public ResultResponse findDetail(@RequestAttribute(name = "ssoUser") SsoUser ssoUser) {
-        return iUserFeign.findDetail(ssoUser.getUserId());
+    public ResultResponse findDetail(String userId) {
+        return iUserFeign.findDetail(userId);
     }
 
 
@@ -46,15 +48,15 @@ public class UserController extends BaseClient {
     public ResultResponse getDetail(String userId) {
         MultiValueMap<String, String> multiValueMap = new LinkedMultiValueMap<>(2);
         multiValueMap.set("userId", userId);
-        return restTemplate.postForObject(creditServiceUrl + "order/base/findPage", multiValueMap, ResultResponse.class);
+        return restTemplate.postForObject(creditServiceUrl + "/user/findDetail", multiValueMap, ResultResponse.class);
     }
 
 
-    @NacosValue(value = "${service.name:1}", autoRefreshed = true)
+    @NacosValue(value = "${server.port:1}", autoRefreshed = true)
 
     private String serverName;
 
-    @NacosValue(value = "${spring.profile.active:2}", autoRefreshed = true)
+    @Value(value = "${spring.profile.active:2}")
     private String active;
 
     @ResponseBody
