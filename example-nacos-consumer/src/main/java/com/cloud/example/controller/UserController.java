@@ -2,6 +2,7 @@ package com.cloud.example.controller;
 
 import com.cloud.example.base.BaseClient;
 import com.cloud.example.base.ResultResponse;
+import com.cloud.example.client.IUserFeign;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -26,6 +27,20 @@ public class UserController extends BaseClient {
     private RestTemplate restTemplate;
     @Value("${service.url.user}")
     private String creditServiceUrl;
+
+    @Autowired
+    IUserFeign iUserFeign;
+
+    @ResponseBody
+    @RequestMapping(value = "/findDetail")
+    public ResultResponse findDetail(String userId) {
+        return iUserFeign.findDetail(userId);
+    }
+    @ResponseBody
+    @RequestMapping(value = "/findException")
+    public ResultResponse findException(String userId) {
+        return iUserFeign.findException(userId);
+    }
 
 
     @ResponseBody

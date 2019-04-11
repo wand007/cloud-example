@@ -1,6 +1,7 @@
 package com.cloud.example.controller;
 
 import com.cloud.example.base.BaseClient;
+import com.cloud.example.base.BusinessException;
 import com.cloud.example.base.ResultResponse;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
@@ -29,6 +30,20 @@ public class UserController extends BaseClient {
     public ResultResponse getNacosValue() {
 
         return ResultResponse.success(serverName + "哈哈");
+    }
+
+    @ResponseBody
+    @RequestMapping(value = "/findDetail")
+    public ResultResponse findDetail() throws InterruptedException {
+        log.info("尼古拉斯蛋蛋");
+        return ResultResponse.success(serverName + "尼古拉斯蛋蛋");
+    }
+
+    @ResponseBody
+    @RequestMapping(value = "/findException")
+    public ResultResponse findException() {
+
+        throw new BusinessException("熔断异常测试");
     }
 
 
