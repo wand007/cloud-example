@@ -40,4 +40,13 @@ public class UserClient extends BaseClient {
 
         return ResultResponse.success(userDAO.getId());
     }
+
+    @ResponseBody
+    @RequestMapping(value = "/asyncGet", method = RequestMethod.POST)
+    public ResultResponse asyncGet(@RequestBody UserParam param) {
+
+        UserDAO userDAO = iUserService.add(param);
+
+        return ResultResponse.success(userDAO.getId());
+    }
 }
