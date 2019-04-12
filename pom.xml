@@ -14,6 +14,7 @@
         <module>eureka</module>
         <module>example-sso-server</module>
         <module>example-sso-web</module>
+        <module>example-tools</module>
     </modules>
 
     <parent>
@@ -22,14 +23,6 @@
         <version>2.1.3.RELEASE</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
-
-    <dependencies>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-web</artifactId>
-        </dependency>
-    </dependencies>
-
 
     <profiles>
         <profile>
