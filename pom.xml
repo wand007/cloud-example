@@ -14,8 +14,6 @@
         <module>eureka</module>
         <module>example-sso-server</module>
         <module>example-sso-web</module>
-        <module>example-nacos-server</module>
-        <module>example-nacos-web</module>
     </modules>
 
     <parent>
