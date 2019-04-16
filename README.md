@@ -1,2 +1,2 @@
 # cloud-example
-Spring Cloud 联系项目
+Spring Cloud 练习项目
