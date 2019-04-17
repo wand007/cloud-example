@@ -12,8 +12,6 @@ server:
 spring:
   application:
       name: example-redisson
-#  main:
-#    allow-bean-definition-overriding: true  #redis 配置
   redis:
     #数据库索引
     database: 0
@@ -34,8 +32,6 @@ spring:
     #连接超时时间
     timeout: 10000
 
-  session:
-    store-type: redis
-    timeout: 2000
-#    redis:
-#      namespace: example_namespace
+#  session:
+#    store-type: redis
+#    timeout: 2000
