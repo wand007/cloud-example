@@ -3,6 +3,7 @@ package com.cloud.example.config;
 import org.redisson.Redisson;
 import org.redisson.api.RedissonClient;
 import org.redisson.config.Config;
+import org.redisson.spring.session.config.EnableRedissonHttpSession;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -13,6 +14,7 @@ import java.io.IOException;
  * @Description redisson 配置类
  * @Date 2019/4/15
  */
+
 
 @Configuration
 public class RedissonConfig {

@@ -8,12 +8,27 @@ server:
       # 阻塞任务线程池
       worker-threads: 50
       buffer-size: 512
-      buffers-per-region: 1024
       direct-buffers: true
-
 spring:
   application:
       name: example-redisson
-#  redis:
-#    redisson:
-#      config: classpath:redisson-single.yaml #配置集群模式
+  #redis 配置
+  redis:
+    #数据库索引
+    database: 0
+    #   host: 127.0.0.1
+    host: 47.93.101.163
+    port: 6379
+    password:
+    jedis:
+      pool:
+        #最大连接数
+        max-active: 8
+        #最大阻塞等待时间(负数表示没限制)
+        max-wait: -1
+        #最大空闲
+        max-idle: 8
+        #最小空闲
+        min-idle: 0
+    #连接超时时间
+    timeout: 10000
