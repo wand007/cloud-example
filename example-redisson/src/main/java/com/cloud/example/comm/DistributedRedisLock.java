@@ -1,5 +1,6 @@
 package com.cloud.example.comm;
 
+import lombok.extern.slf4j.Slf4j;
 import org.redisson.api.RLock;
 import org.redisson.api.RedissonClient;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,8 +22,12 @@ public class DistributedRedisLock {
 
     public boolean acquire(String lockName) {
         String key = LOCK_TITLE + lockName;
-        RLock mylock = redisson.getLock(key);
-        mylock.lock(10, TimeUnit.SECONDS); //lock提供带timeout参数，timeout结束强制解锁，防止死锁
+        RLock mylock = redisson.getFairLock(key);
+        try {
+            mylock.tryLock(10, TimeUnit.SECONDS); //lock提供带timeout参数，timeout结束强制解锁，防止死锁
+        } catch (InterruptedException e) {
+            System.err.println("锁冲突======lock======" + Thread.currentThread().getName() + "======lockName======" + key);
+        }
         System.err.println("======lock======" + Thread.currentThread().getName() + "======lockName======" + key);
         return true;
     }

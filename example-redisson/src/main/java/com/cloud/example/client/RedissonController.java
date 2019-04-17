@@ -27,56 +27,50 @@ public class RedissonController extends BaseClient {
     private DistributedRedisLock distributedRedisLock;
 
 
+    String lockKey = "testRedisson";//分布式锁的key
+
     @ResponseBody
     @RequestMapping(value = "/get1")
     public ResultResponse get() {
-        int size = redissonClient.getMap("TEST:").size();
+        int size = redissonClient.getMap(lockKey).size();
         return ResultResponse.success(size);
     }
 
     @ResponseBody
     @RequestMapping(value = "/add")
     public ResultResponse add() {
-        redissonClient.getMap("TEST:").put("TEST","32");
+        redissonClient.getMap(lockKey).put("TEST", 110);
         return ResultResponse.success();
     }
 
-    @RequestMapping("/redder")
+    @RequestMapping("/redisLock1")
     @ResponseBody
-    public ResultResponse redder() {
-        String key = "test123";
-        //加锁
-        distributedRedisLock.acquire(key);
-        //执行具体业务逻辑
-
-        //释放锁
-        distributedRedisLock.release(key);
+    public ResultResponse redisLock1() {
+        //执行的业务代码
+        for (int i = 0; i < 55; i++) {
+            distributedRedisLock.acquire(lockKey);
+            int stock = Integer.parseInt(redissonClient.getMap(lockKey).get("TEST").toString());
+            redissonClient.getMap(lockKey).put("TEST", (stock - 1));
+            System.out.println("test2_:lockkey:" + lockKey + ",stock:" + (stock - 1) + "");
+            distributedRedisLock.release(lockKey);
+        }
         //返回结果
         return ResultResponse.success();
     }
 
-    @RequestMapping("/redisLock")
+    @RequestMapping("/redisLock2")
     @ResponseBody
-    private void redisLock() {
-        for (int i = 0; i < 100; i++) {
-            final int finalI = i;
-            Thread t = new Thread(new Runnable() {
-                @Override
-                public void run() {
-                    try {
-                        String key = "test123";
-                        distributedRedisLock.acquire(key);
-                        Thread.sleep(1000); //获得锁之后可以进行相应的处理
-                        System.err.println("======获得锁后进行相应的操作======"+ finalI);
-                        distributedRedisLock.release(key);
-                        System.err.println("=============================");
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                    }
-                }
-            });
-            t.start();
+    public ResultResponse redisLock2() {
+        //执行的业务代码
+        for (int i = 0; i < 55; i++) {
+            distributedRedisLock.acquire(lockKey);
+            int stock = Integer.parseInt(redissonClient.getMap(lockKey).get("TEST").toString());
+            redissonClient.getMap(lockKey).put("TEST", (stock - 1));
+            System.out.println("test2_:lockkey:" + lockKey + ",stock:" + (stock - 1) + "");
+            distributedRedisLock.release(lockKey);
         }
+        //返回结果
+        return ResultResponse.success();
     }
 
 
