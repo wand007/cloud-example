@@ -10,6 +10,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 /**
  * @author ; lidongdong
  * @Description
@@ -73,5 +76,19 @@ public class RedissonController extends BaseClient {
         return ResultResponse.success();
     }
 
+
+    @RequestMapping(value = "/index")
+    @ResponseBody
+    public ResultResponse index(HttpServletRequest request) {
+        HttpSession session = request.getSession();
+        if (session.getAttribute("user") == null) {
+            session.setAttribute("user", "尼古拉斯蛋蛋");
+            System.out.println("不存在session");
+        } else {
+            System.out.println("存在session");
+        }
+        //返回结果
+        return ResultResponse.success();
+    }
 
 }
