@@ -4,7 +4,6 @@ import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.PropertyAccessor;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.context.annotation.Bean;
-import org.springframework.data.redis.serializer.GenericJackson2JsonRedisSerializer;
 import org.springframework.data.redis.serializer.Jackson2JsonRedisSerializer;
 import org.springframework.data.redis.serializer.RedisSerializer;
 import org.springframework.session.data.redis.RedisFlushMode;
@@ -26,7 +25,7 @@ public class HttpSessionConfig {
      * 配置Spring-Session共享
      */
     @Bean
-    public CookieSerializer defaultCookieSerializer(){
+    public CookieSerializer defaultCookieSerializer() {
         DefaultCookieSerializer defaultCookieSerializer = new DefaultCookieSerializer();
         defaultCookieSerializer.setCookieName("MyESSION");
         defaultCookieSerializer.setDomainName("127.0.0.1");
@@ -42,7 +41,7 @@ public class HttpSessionConfig {
 //    }
 
     @Bean
-    public RedisSerializer<Object> springSessionDefaultRedisSerializer(){
+    public RedisSerializer<Object> springSessionDefaultRedisSerializer() {
         // 使用Jackson2JsonRedisSerialize 替换默认序列化
         Jackson2JsonRedisSerializer jackson2JsonRedisSerializer = new Jackson2JsonRedisSerializer(Object.class);
 
