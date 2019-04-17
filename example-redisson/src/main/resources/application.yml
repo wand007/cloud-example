@@ -12,7 +12,8 @@ server:
 spring:
   application:
       name: example-redisson
-  #redis 配置
+#  main:
+#    allow-bean-definition-overriding: true  #redis 配置
   redis:
     #数据库索引
     database: 0
@@ -36,3 +37,5 @@ spring:
   session:
     store-type: redis
     timeout: 2000
+#    redis:
+#      namespace: example_namespace
