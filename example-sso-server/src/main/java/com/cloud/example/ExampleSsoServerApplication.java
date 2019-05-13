@@ -28,6 +28,9 @@ import java.util.concurrent.ThreadPoolExecutor;
 @EnableEurekaClient
 @SpringBootApplication
 @ServletComponentScan
+//@EnableJpaRepositories("com.cloud.example.dao")
+//@EntityScan("com.cloud.example.domain")
+//@EnableMongoRepositories(basePackages = {"com.cloud.example.dao"})
 public class ExampleSsoServerApplication {
 
     public static void main(String[] args) {

@@ -3,7 +3,9 @@ package com.cloud.example.domain;
 import lombok.Data;
 import org.hibernate.validator.constraints.Length;
 
+import javax.validation.Valid;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Pattern;
 import java.io.Serializable;
 import java.util.Date;
@@ -41,6 +43,10 @@ public class UserParam implements Serializable {
     @NotBlank(message = "手机号不能为空", groups = {ValidateGroup.GroupA.class})
     @Pattern(regexp="^((13[0-9])|(15[^4,\\\\D])|(17[0-9])|(18[0-9]))\\\\d{8}$",message="手机号不正确")
     private String phoneNo;
+
+    @Valid
+    @NotEmpty(message = "地址不能为空", groups = {ValidateGroup.GroupA.class, ValidateGroup.GroupB.class})
+    private UserAddressParam userAddressParam;
 
     /**
      * 登陆密码
