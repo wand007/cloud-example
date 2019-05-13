@@ -18,7 +18,6 @@
         <module>example-nacos-provider</module>
         <module>example-tools</module>
         <module>example-seata</module>
-        <module>example-sso</module>
     </modules>
 
     <parent>
