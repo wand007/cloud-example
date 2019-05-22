@@ -8,10 +8,10 @@ import com.cloud.example.domain.ValidateGroup;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import javax.validation.constraints.NotNull;
+import java.math.BigDecimal;
 
 /**
  * @author ; lidongdong
@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
  * @Date 2019/4/2
  */
 @Slf4j
+@Validated
 @RestController
 @RequestMapping(value = "/sso")
 public class ValidateClient extends BaseClient {
@@ -34,5 +35,12 @@ public class ValidateClient extends BaseClient {
         return ResultResponse.success(param);
     }
 
-
+    @ResponseBody
+    @RequestMapping(value = "/getCityId", method = RequestMethod.GET)
+    public ResultResponse getCityId(
+            @NotNull(message = "lat不能为空") BigDecimal lat,
+            @NotNull(message = "lng不能为空") BigDecimal lng) {
+        log.info("lat:" + lat + ",lng:" + lng);
+        return ResultResponse.success();
+    }
 }
