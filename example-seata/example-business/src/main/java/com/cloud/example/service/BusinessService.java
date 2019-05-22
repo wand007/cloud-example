@@ -27,7 +27,7 @@ public class BusinessService {
      * @param commodityCode
      * @param orderCount
      */
-    @GlobalTransactional
+    @GlobalTransactional(name="my_test_tx_group")
     public void purchase(String userId, String commodityCode, int orderCount) {
         storageFeignClient.deduct(commodityCode, orderCount);
 
