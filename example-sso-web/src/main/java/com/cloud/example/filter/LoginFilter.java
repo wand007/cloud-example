@@ -62,7 +62,7 @@ public class LoginFilter implements Filter {
         String origin = request.getHeader("Origin");
         //设置跨域
         if (StringUtils.isNotBlank(origin)) {
-            if (request.getHeader("Origin").contains("gxcards.com") || origin.contains("localhost")) {
+            if (request.getHeader("Origin").contains("aa.com") || origin.contains("localhost")) {
                 response.setCharacterEncoding("utf-8");
                 response.setHeader("Access-Control-Allow-Credentials", "true");
                 response.setHeader("Access-Control-Allow-Headers", "Origin, Accept, Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With");
