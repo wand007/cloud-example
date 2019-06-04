@@ -1,14 +1,16 @@
 server:
+  port: 21001
+  tomcat:
+    uriEncoding: UTF-8
+    basedir: /data/temp
   servlet:
     context-path: /sso
-  port: 21001
   undertow:
   # 设置IO线程数, 它主要执行非阻塞的任务,它们会负责多个连接, 默认设置每个CPU核心一个线程
       io-threads: 4
       # 阻塞任务线程池
       worker-threads: 50
       buffer-size: 512
-      buffers-per-region: 1024
       direct-buffers: true
 
 spring:

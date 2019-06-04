@@ -8,7 +8,6 @@ server:
       # 阻塞任务线程池
       worker-threads: 50
       buffer-size: 512
-      buffers-per-region: 1024
       direct-buffers: true
 
 spring:
