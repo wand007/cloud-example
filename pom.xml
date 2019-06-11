@@ -17,7 +17,6 @@
         <module>example-nacos-consumer</module>
         <module>example-nacos-provider</module>
         <module>example-tools</module>
-        <module>example-seata</module>
     </modules>
 
     <parent>
