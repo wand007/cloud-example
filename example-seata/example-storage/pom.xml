@@ -16,6 +16,7 @@
         <seata.version>0.6.1</seata.version>
     </properties>
 
+
     <dependencies>
         <dependency>
             <groupId>org.springframework.boot</groupId>
