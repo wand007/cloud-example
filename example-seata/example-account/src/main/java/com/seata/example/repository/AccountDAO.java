@@ -1,6 +1,6 @@
-package com.cloud.example.repository;
+package com.seata.example.repository;
 
-import com.cloud.example.entity.Account;
+import com.seata.example.entity.Account;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 /**

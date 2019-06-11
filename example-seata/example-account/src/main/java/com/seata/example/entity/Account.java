@@ -1,4 +1,4 @@
-package com.cloud.example.entity;
+package com.seata.example.entity;
 
 import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.DynamicUpdate;

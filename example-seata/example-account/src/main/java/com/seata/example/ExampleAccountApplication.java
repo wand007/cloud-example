@@ -1,4 +1,4 @@
-package com.cloud.example;
+package com.seata.example;
 
 import com.alibaba.druid.pool.DruidDataSource;
 import io.seata.rm.datasource.DataSourceProxy;
