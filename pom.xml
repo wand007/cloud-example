@@ -12,9 +12,8 @@
         <module>core</module>
         <module>dao</module>
         <module>eureka</module>
-        <module>example-sso-server</module>
-        <module>example-sso-web</module>
         <module>example-tools</module>
+        <module>example-sso</module>
     </modules>
 
     <parent>
