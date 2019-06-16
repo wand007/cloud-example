@@ -51,13 +51,13 @@ public class UserController extends BaseClient {
     }
 
 
-    @Value(value = "${server.port:11}")
-    private String serverPort;
+    @Value(value = "${config-client:haha}")
+    private String configClient;
 
     @ResponseBody
     @RequestMapping(value = "/getConfig")
     public ResultResponse getConfig() {
-        return ResultResponse.success(serverPort);
+        return ResultResponse.success(configClient);
     }
 
 
