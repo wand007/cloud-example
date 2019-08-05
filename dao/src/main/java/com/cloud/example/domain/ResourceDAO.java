@@ -33,6 +33,9 @@ public class ResourceDAO implements Serializable{
     @Column(name = "resource_logo", columnDefinition = "varchar(64) COMMENT '资源logo'")
     private String resourceLogo;
 
+    @Column(name = "category_id", columnDefinition = "int COMMENT '父类别ID'")
+    private Integer categoryId;
+
     @CreationTimestamp
     @Column(name = "create_date")
     public Date createDate;

@@ -10,11 +10,8 @@ import javax.validation.Validation;
 import javax.validation.Validator;
 import javax.validation.ValidatorFactory;
 
-/**
- * @author ; lidongdong
- * @Description
- * @Date 2019-05-22
- */
+
+
 @Configuration
 @EnableAutoConfiguration
 
