@@ -1,7 +1,7 @@
 package com.jpa.example.client;
 
+import com.cloud.example.base.BaseClient;
 import com.cloud.example.base.ResultResponse;
-import com.jpa.example.comm.BaseClient;
 import com.jpa.example.feign.FeignOrder;
 import com.jpa.example.service.OrderServiceImpl;
 import lombok.extern.slf4j.Slf4j;

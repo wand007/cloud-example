@@ -168,15 +168,5 @@ public class RandomUtils {
         return machineId + String.format("%015d", hashCodeV);
     }
 
-    public static void main(String[] args) {
-        try {
-            System.out.println(getOrderIdByUUId());
-            String str = game21();
-            System.out.println(str.length() + ">>>>>" + str);
-            System.out.println(System.currentTimeMillis() + "" + generateNumber());
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
 
 }
