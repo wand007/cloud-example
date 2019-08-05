@@ -20,7 +20,10 @@ public enum BusinessCode {
     /**
      * 此状态码前端直接提示
      */
-    ALERT_MESSAGE(12000, "前端直接提示的 指导用户进一步操作的信息"),;
+    ALERT_MESSAGE(12000, "前端直接提示的 指导用户进一步操作的信息"),
+
+    PARAMS_ERROR(40003, "参数异常"),
+    ;
 
     private int code;
     private String desc;

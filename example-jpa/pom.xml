@@ -17,6 +17,7 @@
     <packaging>pom</packaging>
     <description>Demo project for Spring Boot</description>
 
+
     <modules>
         <module>example-client</module>
         <module>example-feign</module>
@@ -30,6 +31,31 @@
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
     </properties>
+
+
+    <profiles>
+        <profile>
+            <id>dev</id>
+            <properties>
+                <package.environment>dev</package.environment>
+            </properties>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+        </profile>
+        <profile>
+            <id>test</id>
+            <properties>
+                <package.environment>test</package.environment>
+            </properties>
+        </profile>
+        <profile>
+            <id>pro</id>
+            <properties>
+                <package.environment>pro</package.environment>
+            </properties>
+        </profile>
+    </profiles>
 
 
     <repositories>
