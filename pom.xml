@@ -10,7 +10,6 @@
     <packaging>pom</packaging>
     <modules>
         <module>core</module>
-        <module>dao</module>
         <module>eureka</module>
         <module>example-tools</module>
         <module>example-sso</module>

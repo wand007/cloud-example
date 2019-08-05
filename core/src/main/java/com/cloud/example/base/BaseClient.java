@@ -24,7 +24,7 @@ public class BaseClient {
     @ResponseBody
     ResultResponse exceptionHandler(Exception e) {
         log.error("SystemException", e);
-        return ResultResponse.error();
+        return ResultResponse.fromBusinessCode(BusinessCode.ERROR);
     }
 
     /**
