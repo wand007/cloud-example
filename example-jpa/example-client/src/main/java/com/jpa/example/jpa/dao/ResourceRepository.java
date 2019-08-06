@@ -18,12 +18,16 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface ResourceRepository extends JpaRepository<ResourceDAO, String>, JpaSpecificationExecutor<ResourceDAO> {
 
-    @Query(value = "SELECT new com.cloud.example.domain.ResourceDAO(r.id, r.resourceId, " +
-            "r.logoUrl, r.resourceName,r.categoryId,r.resourceStatus, r.channelType, r.protocolPrice, r.price," +
-            "r.saleNum,r.score,r.createDate) FROM ChannelCardDO r, ChannelCardDetailDO rd WHERE r.id = rd.id " +
-            "and ( r.id=:#{#param.getId()} or :#{#param.getId()} is null)  " +
-            "and ( r.channelType=:#{#param.getChannelType()} or :#{#param.getChannelType()} is null)  " +
-            "and ( r.resourceId=:#{#param.getResourceId()} or :#{#param.getResourceId()} is null)  " +
+    /**
+     * 多表分页查询
+     *
+     * @param param
+     * @param pageable
+     * @return
+     */
+    @Query(value = "SELECT new com.jpa.example.jpa.domain.ResourceDAO(r.id,r.resourceName, r.resourceLogo,r.categoryId,r.createDate)" +
+            " FROM ResourceDAO r, ResourceDetailDAO rd WHERE r.id = rd.id " +
+            "and ( r.id=:#{#param.getId()} or :#{#param.getId()} is null) " +
             "and ( rd.topClassId=:#{#param.getTopClassId()} or :#{#param.getTopClassId()} is null) " +
             "and ( r.categoryId in :#{#param.getCategoryIds()} or :#{#param.getLogoUrl()} is null) " +
             "and ( r.resourceStatus in :#{#param.getResourceStatuss()} or :#{#param.getResourceStatuss().size()} = 0) " +

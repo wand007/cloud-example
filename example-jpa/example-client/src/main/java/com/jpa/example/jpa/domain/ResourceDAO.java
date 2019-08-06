@@ -36,6 +36,9 @@ public class ResourceDAO implements Serializable{
     @Column(name = "category_id", columnDefinition = "int COMMENT '父类别ID'")
     private Integer categoryId;
 
+    @Column(name = "resource_status", columnDefinition = "int default '0' COMMENT '资源状态'")
+    private Integer resourceStatus;
+
     @CreationTimestamp
     @Column(name = "create_date")
     public Date createDate;
@@ -43,4 +46,16 @@ public class ResourceDAO implements Serializable{
     @UpdateTimestamp
     @Column(name = "update_date")
     public Date updateDate;
+
+
+    public ResourceDAO() {
+    }
+
+    public ResourceDAO(String id, String resourceName, String resourceLogo, Integer categoryId, Date createDate) {
+        this.id = id;
+        this.resourceName = resourceName;
+        this.resourceLogo = resourceLogo;
+        this.categoryId = categoryId;
+        this.createDate = createDate;
+    }
 }
