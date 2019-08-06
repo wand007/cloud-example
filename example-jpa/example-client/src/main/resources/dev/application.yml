@@ -1,18 +1,18 @@
 server:
   port: 21007
   undertow:
-  # 设置IO线程数, 它主要执行非阻塞的任务,它们会负责多个连接, 默认设置每个CPU核心一个线程
-      io-threads: 4
-      # 阻塞任务线程池
-      worker-threads: 50
-      buffer-size: 512
-      direct-buffers: true
+    # 设置IO线程数, 它主要执行非阻塞的任务,它们会负责多个连接, 默认设置每个CPU核心一个线程
+    io-threads: 4
+    # 阻塞任务线程池
+    worker-threads: 50
+    buffer-size: 512
+    direct-buffers: true
 
 spring:
   application:
-      name: example-client
+    name: example-client
   main:
-      allow-bean-definition-overriding: true
+    allow-bean-definition-overriding: true
   servlet:
     # 文件上传
     multipart:
@@ -57,16 +57,16 @@ spring:
   #  spring-data-jpa 配置
   jpa:
     database: MYSQL
-      show-sql: true
-      open-in-view: false
-      properties:
-        hibernate:
-          hbm2ddl:
-            auto: update
-          dialect: org.hibernate.dialect.MySQL5Dialect
+    show-sql: true
+    open-in-view: false
+    properties:
+      hibernate:
+        hbm2ddl:
+          auto: update
+        dialect: org.hibernate.dialect.MySQL5Dialect
   jackson:
-      timeZone: GMT+8
-      dateFormat: yyyy-MM-dd HH:mm:ss
+    timeZone: GMT+8
+    dateFormat: yyyy-MM-dd HH:mm:ss
 eureka:
   instance:
     prefer-ip-address: true
