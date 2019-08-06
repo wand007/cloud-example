@@ -31,6 +31,8 @@ public interface ResourceRepository extends JpaRepository<ResourceDAO, String>, 
             "and ( rd.topClassId=:#{#param.getTopClassId()} or :#{#param.getTopClassId()} is null) " +
             "and ( r.categoryId in :#{#param.getCategoryIds()} or :#{#param.getLogoUrl()} is null) " +
             "and ( r.resourceStatus in :#{#param.getResourceStatuss()} or :#{#param.getResourceStatuss().size()} = 0) " +
+            "and ( r.createDate >=:#{#param.getStartTime()} or :#{#param.getStartTime} is null) " +
+            "and ( r.createDate <=:#{#param.getEndTime()} or :#{#param.getEndTime} is null) " +
             "and ( r.resourceName like CONCAT('%',:#{#param.getResourceName()},'%')  or :#{#param.getResourceName()} is null) ")
     Page<ResourceDAO> findPage(@Param("param") ResourceParam param, Pageable pageable);
 }

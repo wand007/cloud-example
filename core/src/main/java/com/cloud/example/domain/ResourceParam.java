@@ -3,8 +3,8 @@ package com.cloud.example.domain;
 import lombok.Data;
 
 import java.io.Serializable;
-import java.math.BigDecimal;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -15,42 +15,30 @@ import java.util.List;
 @Data
 public class ResourceParam extends BaseParam implements Serializable {
 
-
-    private String id;
-
     /**
      * 资源ID
      */
-    private String resourceId;
+    private String id;
+
     /**
      * 资源名称
      */
     private String resourceName;
 
-    private Integer channelType;
-
-    private BigDecimal price;
-
-    private BigDecimal score;
-
     private String logoUrl;
-
-    private String resourceDesc;
-
-    private String resourcePicUrl;
 
     /**
      * 顶级类目ID
      */
     private Integer topClassId;
     /**
-     * 二级类目ID
+     * 开始时间
      */
-    private Integer secondClassId;
+    private Date startTime;
     /**
-     * 三级类目ID
+     * 结束时间
      */
-    private Integer categoryId;
+    private Date endTime;
     /**
      * 三级类目ID集合
      */
