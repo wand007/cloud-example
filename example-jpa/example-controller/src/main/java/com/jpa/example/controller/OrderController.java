@@ -1,4 +1,4 @@
-package com.jpa.example.client;
+package com.jpa.example.controller;
 
 import com.cloud.example.base.BaseClient;
 import com.cloud.example.base.ResultResponse;
