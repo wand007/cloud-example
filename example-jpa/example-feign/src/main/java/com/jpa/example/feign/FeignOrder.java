@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
  * @Description
  * @Date 2019-08-05
  */
-@FeignClient(name = "${server-feign-name.card}", path = "/order", fallbackFactory = HystrixOrderFeign.class)
+@FeignClient(name = "${server-feign-name.order}", path = "/order", fallbackFactory = HystrixOrderFeign.class)
 public interface FeignOrder {
 
 

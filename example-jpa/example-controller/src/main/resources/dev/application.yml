@@ -50,3 +50,7 @@ eureka:
       enabled: true
     serviceUrl:
       defaultZone: http://127.0.0.1:8761/eureka/
+
+##服务地址:
+server-feign-name:
+  order: example-client
