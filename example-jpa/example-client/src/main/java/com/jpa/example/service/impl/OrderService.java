@@ -1,6 +1,8 @@
 package com.jpa.example.service.impl;
 
+import com.cloud.example.utils.SnowflakeIdWorker;
 import com.jpa.example.service.OrderServiceImpl;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 /**
@@ -10,4 +12,6 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class OrderService implements OrderServiceImpl {
+    @Autowired
+    SnowflakeIdWorker snowflakeIdWorker;
 }

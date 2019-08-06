@@ -27,29 +27,35 @@ spring:
       # 文件大小阈值，当大于这个阈值时将写入到磁盘，否则存在内存中，（默认值0 一般情况下不用特意修改）
       file-size-threshold: 0
 
-
 eureka:
   instance:
     prefer-ip-address: true
-    # 设置心跳的时间间隔（默认是30秒）
-    lease-renewal-interval-in-seconds: 3
-    # 如果现在超过了5秒的间隔
-    lease-expiration-duration-in-seconds: 9
   client:
-    register-with-eureka: true
+    register-with-eureka: false
     fetch-registry: true
-    # #CacherefreshThread线程的调度频率，eureka默认30秒刷新一次缓存
-    registry-fetch-interval-seconds: 10
-    #刷新Eureka Server地址的时间间隔
-    eureka-service-url-poll-interval-seconds: 300
-    #instanceInfoReplication将实例信息变更同步到Eureka Server的初始延时时间，默认40秒
-    initial-instance-info-replication-interval-seconds: 40
-    #InstanceInfoReplication将实例信息变更同步到Eureka Server的时间间隔
-    instance-info-replication-interval-seconds: 30
     healthcheck:
       enabled: true
     serviceUrl:
       defaultZone: http://127.0.0.1:8761/eureka/
+feign:
+  hystrix:
+    #熔断启动
+    enabled: true
+  client:
+    config:
+      default:
+        #超时时间 (ms)
+        connectTimeout: 20000
+        readTimeout: 20000
+# 将线程隔离设置为SEMAPHORE
+hystrix:
+  command:
+    default:
+      execution:
+        isolation:
+          strategy: SEMAPHORE
+          thread:
+            timeoutInMilliseconds: 9000
 
 ##服务地址:
 server-feign-name:

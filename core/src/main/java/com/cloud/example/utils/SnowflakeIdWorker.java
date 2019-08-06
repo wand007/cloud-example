@@ -1,17 +1,5 @@
 package com.cloud.example.utils;
 
-import com.cloud.example.config.Config;
-import org.apache.commons.lang3.StringUtils;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.redis.core.RedisTemplate;
-import org.springframework.stereotype.Component;
-
-import java.net.InetAddress;
-import java.net.NetworkInterface;
-import java.util.Random;
-
 /**
  * Twitter_Snowflake<br>
  * SnowFlake的结构如下(每部分用-分开):<br>
@@ -27,10 +15,8 @@ import java.util.Random;
  * @author lidongdong
  * @Date 2019/4/8
  */
-@Component
 public class SnowflakeIdWorker {
 
-    Logger logger = LoggerFactory.getLogger(SnowflakeIdWorker.class);
     // ==============================Fields===========================================
     //最小位数
     public int MINFULL = 13;
@@ -104,28 +90,14 @@ public class SnowflakeIdWorker {
      */
     private long lastTimestamp = -1L;
 
-    @Autowired
-    RedisTemplate redisTemplate;
-
-    //==============================Constructors=====================================
-
-
-    private static final String defaultMac;
-
-    static {
-        defaultMac = "000" + getMac();
-    }
-
-    public SnowflakeIdWorker() {
-    }
-
     /**
      * 构造函数
      *
      * @param workerId     工作ID (0~31)
      * @param datacenterId 数据中心ID (0~31)
      */
-    public SnowflakeIdWorker(long workerId, long datacenterId) {
+    public SnowflakeIdWorker(long workerId,
+                             long datacenterId) {
         if (workerId > maxWorkerId || workerId < 0) {
             throw new IllegalArgumentException(String.format("worker Id can't be greater than %d or less than 0", maxWorkerId));
         }
@@ -145,38 +117,13 @@ public class SnowflakeIdWorker {
      */
     public synchronized String nextId() {
 
-        //先判断 workerId 和 datacenterId 是否为空
-        //如果为空就去redis 中根据mac 地址获取 唯一标识
-        //没有话,自增标识,并设置
-        if (null == workerId) {
-            String macAddress = getLocalMACAddress();
-            if (StringUtils.isBlank(macAddress)) {
-                random();
-            } else {
-                Object s = null;
-                if (redisTemplate.hasKey(Config.SNOW_FLAKE_WORKER_MAP)) {
-                    s = redisTemplate.opsForHash().get(Config.SNOW_FLAKE_WORKER_MAP, macAddress);
-                }
-                if (null == s) {
-                    long increment = redisTemplate.opsForValue().increment(Config.SNOW_FLAKE_WORKER, 1L);
-                    workerId = increment;
-                    //缓存到数据库
-                    redisTemplate.opsForHash().put(Config.SNOW_FLAKE_WORKER_MAP, macAddress, increment + "");
-                } else {
-                    //读取缓存的 worker Id
-                    workerId = Long.parseLong(s + "");
-                }
-            }
-
-        }
-
-
         long timestamp = timeGen();
 
         //如果当前时间小于上一次ID生成的时间戳，说明系统时钟回退过这个时候应当抛出异常
         if (timestamp < lastTimestamp) {
             throw new RuntimeException(
-                    String.format("Clock moved backwards.  Refusing to generate id for %d milliseconds", lastTimestamp - timestamp));
+                    String.format("Clock moved backwards.  Refusing to generate id for %d milliseconds",
+                            lastTimestamp - timestamp));
         }
 
         //如果是同一时间生成的，则进行毫秒内序列
@@ -187,15 +134,13 @@ public class SnowflakeIdWorker {
                 //阻塞到下一个毫秒,获得新的时间戳
                 timestamp = tilNextMillis(lastTimestamp);
             }
-        }
-        //时间戳改变，毫秒内序列重置
-        else {
+        } else {
+            //时间戳改变，毫秒内序列重置
             sequence = 0L;
         }
 
         //上次生成ID的时间截
         lastTimestamp = timestamp;
-
         //移位并通过或运算拼到一起组成64位的ID
         long l = ((timestamp - twepoch) << timestampLeftShift) //
                 | (datacenterId << datacenterIdShift) //
@@ -227,100 +172,4 @@ public class SnowflakeIdWorker {
         return System.currentTimeMillis();
     }
 
-
-    /**
-     * 获取本机的 mac 地址
-     *
-     * @return
-     * @throws Exception
-     */
-    private String getLocalMACAddress() {
-
-        InetAddress ia = null;//获取本地IP对象
-        //获得网络接口对象（即网卡），并得到mac地址，mac地址存在于一个byte数组中。
-        byte[] mac = new byte[0];
-        try {
-            ia = InetAddress.getLocalHost();
-            mac = NetworkInterface.getByInetAddress(ia).getHardwareAddress();
-            if (mac == null) {
-                mac = defaultMac.getBytes();
-            }
-        } catch (Exception e) {
-            logger.error("网卡信息获取异常!", e);
-            return "";
-        }
-
-        //下面代码是把mac地址拼装成String
-        StringBuffer sb = new StringBuffer();
-
-        for (int i = 0; i < mac.length; i++) {
-            if (i != 0) {
-                sb.append("-");
-            }
-            //mac[i] & 0xFF 是为了把byte转化为正整数
-            String s = Integer.toHexString(mac[i] & 0xFF);
-            sb.append(s.length() == 1 ? 0 + s : s);
-        }
-
-        //把字符串所有小写字母改为大写成为正规的mac地址并返回
-        return sb.toString().toUpperCase();
-    }
-
-    private void random() {
-        int max = 31;
-        int min = 0;
-        Random random = new Random();
-        int ws = random.nextInt(max) % (max - min + 1) + min;
-        workerId = Long.parseLong(ws + "");
-
-    }
-
-    public static String coverZero(int full, Integer val, String time) {
-
-        String value = val.toString();
-        int length = value.length();
-        StringBuffer sb = new StringBuffer();
-        sb.append(time);
-        while (length < full) {
-            sb.append("0");
-            length++;
-        }
-        sb.append(val);
-        return sb.toString();
-    }
-
-
-    public static String getMac() {
-        StringBuffer mac = new StringBuffer();
-        for (int i = 1; i <= 6; i++) {
-            String one = getStringRandom(1);
-            String two = getStringRandom(1);
-            mac.append(one).append(two);
-            if (i != 6) {
-                mac.append(":");
-            }
-            ;
-        }
-        return mac.toString().toLowerCase();
-    }
-
-    //生成随机数字和字母,
-    public static String getStringRandom(int length) {
-        String val = "";
-        Random random = new Random();
-        //参数length，表示生成几位随机数
-        for (int i = 0; i < length; i++) {
-            String charOrNum = random.nextInt(2) % 2 == 0 ? "char" : "num";
-            //输出字母还是数字
-            if ("char".equalsIgnoreCase(charOrNum)) {
-                //输出是大写字母还是小写字母
-                int temp = random.nextInt(2) % 2 == 0 ? 65 : 97;
-                val += (char) (random.nextInt(6) + temp);
-            } else if ("num".equalsIgnoreCase(charOrNum)) {
-                val += String.valueOf(random.nextInt(10));
-            }
-        }
-        return val;
-    }
-    //==============================Test=============================================
 }
