@@ -1,5 +1,6 @@
 package com.cloud.example.enums;
 
+import java.util.HashMap;
 import java.util.Map;
 import java.util.stream.Stream;
 
@@ -43,7 +44,7 @@ public enum OrderStatusEnum {
         return showName;
     }
 
-    private static Map<Integer, OrderStatusEnum> enumMap = null;
+    private static Map<Integer, OrderStatusEnum> enumMap = new HashMap<>();
 
     static {
         Stream.of(OrderStatusEnum.values()).parallel().forEach(obj -> {
