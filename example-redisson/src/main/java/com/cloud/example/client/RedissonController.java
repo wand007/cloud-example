@@ -20,7 +20,7 @@ import javax.servlet.http.HttpSession;
  */
 @Slf4j
 @RestController
-@RequestMapping(value = "")
+@RequestMapping(value = "redisson")
 public class RedissonController extends BaseClient {
 
     @Autowired
