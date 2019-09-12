@@ -3,9 +3,9 @@ package com.cloud.example.utils.file;
 import java.io.*;
 
 /**
- * @description: 请写描述
- * @author: cuking_work
- * @date: 2019/3/25
+ * @author ; lidongdong
+ * @Description
+ * @Date 2019-09-10
  */
 public class FileUtils {
 

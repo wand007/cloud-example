@@ -4,9 +4,9 @@ import java.io.*;
 import java.nio.charset.Charset;
 
 /**
- * @description: 请写描述
- * @author: cuking_work
- * @date: 2019/3/25
+ * @author ; lidongdong
+ * @Description
+ * @Date 2019-09-10
  */
 public class StreamUtils {
 
