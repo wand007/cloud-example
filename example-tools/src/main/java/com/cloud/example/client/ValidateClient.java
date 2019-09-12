@@ -25,14 +25,14 @@ import java.util.List;
 @Slf4j
 @Validated
 @RestController
-@RequestMapping(value = "/sso")
+@RequestMapping(value = "/valid")
 public class ValidateClient extends BaseClient {
 
 
     @ResponseBody
-    @RequestMapping(value = "/show")
-    public ResultResponse show(@Validated(value = ValidateGroup.GroupA.class) @RequestBody UserParam param,
-                               BindingResult result) {
+    @RequestMapping(value = "/test1")
+    public ResultResponse test1(@Validated(value = ValidateGroup.GroupA.class) @RequestBody UserParam param,
+                                BindingResult result) {
         if (result.hasErrors()) {
             throw new BusinessException(result.getAllErrors().get(0).getDefaultMessage());
         }
@@ -40,14 +40,14 @@ public class ValidateClient extends BaseClient {
     }
 
     @ResponseBody
-    @PostMapping(value = "/updateProtocolPriceAll")
-    public ResultResponse updateProtocolPriceAll(@RequestParam(name = "province", required = false) String province,
-                                                 @RequestParam(name = "city", required = false) String city,
-                                                 @RequestParam(name = "sellFlag", required = false) Boolean sellFlag,
-                                                 @NotNull(message = "上调比例不能为空")
-                                                 @DecimalMin(value = "0", message = "上调比例最小为0")
-                                                 @DecimalMax(value = "200", message = "上调比例最大为200")
-                                                 @RequestParam(name = "upScale") BigDecimal upScale) {
+    @PostMapping(value = "/test2")
+    public ResultResponse test2(@RequestParam(name = "province", required = false) String province,
+                                @RequestParam(name = "city", required = false) String city,
+                                @RequestParam(name = "sellFlag", required = false) Boolean sellFlag,
+                                @NotNull(message = "上调比例不能为空")
+                                @DecimalMin(value = "0", message = "上调比例最小为0")
+                                @DecimalMax(value = "200", message = "上调比例最大为200")
+                                @RequestParam(name = "upScale") BigDecimal upScale) {
         return ResultResponse.success(province + city + sellFlag);
     }
 
@@ -59,10 +59,10 @@ public class ValidateClient extends BaseClient {
      * @return
      */
     @ResponseBody
-    @PostMapping(value = "/batchSave", consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResultResponse batchSave(@NotEmpty(message = "请至少选择一个商品")
-                                    @Size(max = 300, message = "最多可选300条记录")
-                                    @Valid @RequestBody List<WashCarControlParam> params) {
+    @PostMapping(value = "/test3", consumes = MediaType.APPLICATION_JSON_VALUE)
+    public ResultResponse test3(@NotEmpty(message = "请至少选择一个商品")
+                                @Size(max = 300, message = "最多可选300条记录")
+                                @Valid @RequestBody List<WashCarControlParam> params) {
         return ResultResponse.success(params);
     }
 }
