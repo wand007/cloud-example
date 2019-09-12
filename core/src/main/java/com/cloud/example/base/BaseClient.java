@@ -27,6 +27,13 @@ public class BaseClient {
         return ResultResponse.fromBusinessCode(BusinessCode.ERROR);
     }
 
+    @ExceptionHandler(BusinessException.class)
+    @ResponseBody
+    ResultResponse exceptionHandler(BusinessException e) {
+        log.error("BusinessException", e);
+        return new ResultResponse(e.getCode(), e.getMsg());
+    }
+
     /**
      * hibernate 参数校验出错会抛出 ConstraintViolationException 异常
      * 在此方法中处理，将错误信息输出
@@ -50,12 +57,6 @@ public class BaseClient {
         return new ResultResponse(BusinessCode.ALERT_MESSAGE.getCode(), errorInfo);
     }
 
-    @ExceptionHandler(BusinessException.class)
-    @ResponseBody
-    ResultResponse exceptionHandler(BusinessException e) {
-        log.error("BusinessException", e);
-        return new ResultResponse(e.getCode(), e.getMsg());
-    }
 
     @ExceptionHandler(BindException.class)
     @ResponseBody
