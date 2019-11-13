@@ -13,6 +13,7 @@
         <module>eureka</module>
         <module>example-tools</module>
         <module>example-sso</module>
+        <module>example-jpa</module>
     </modules>
 
     <parent>

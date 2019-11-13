@@ -9,9 +9,7 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.jpa.example</groupId>
     <artifactId>example-feign</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
 
     <dependencies>
         <dependency>
@@ -30,5 +28,4 @@
     <build>
         <finalName>example-feign</finalName>
     </build>
-
 </project>
