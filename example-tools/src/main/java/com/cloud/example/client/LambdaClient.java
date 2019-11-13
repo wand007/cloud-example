@@ -12,6 +12,27 @@ import java.util.stream.Collectors;
 public class LambdaClient {
 
 
+    /**
+     * java标签的使用
+     */
+    public static void labeledFor() {
+        label:
+        for (int i = 0; i < 10; i++) {
+            outer:
+            for (int j = 0; j < 10; j++) {
+                bgm:
+                for (int m = 0; m < 10; m++) {
+                    if (m > 6) {
+                        System.out.println(i + "++" + j + "++" + m);
+                        break outer;
+                    }
+                    System.out.println(i + "--" + j + "--" + m);
+                }
+            }
+        }
+    }
+
+
     public static void test1() {
         List<String> list1 = new ArrayList<String>();
         list1.add("1");
@@ -62,6 +83,8 @@ public class LambdaClient {
 
     public static void main(String[] args) {
         test1();
+
+        labeledFor();
     }
 
 }
