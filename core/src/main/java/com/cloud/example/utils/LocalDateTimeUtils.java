@@ -82,7 +82,9 @@ public final class LocalDateTimeUtils {
      */
     private static final DateTimeFormatter HHmmss_CN = DateTimeFormatter.ofPattern("HH时mm分ss秒");
 
-    // 本地时间显示格式：区分中文和外文显示
+    /**
+     * 本地时间显示格式：区分中文和外文显示
+     */
     private static final DateTimeFormatter shotDate = DateTimeFormatter.ofLocalizedDate(FormatStyle.SHORT);
     private static final DateTimeFormatter fullDate = DateTimeFormatter.ofLocalizedDate(FormatStyle.FULL);
     private static final DateTimeFormatter longDate = DateTimeFormatter.ofLocalizedDate(FormatStyle.LONG);
