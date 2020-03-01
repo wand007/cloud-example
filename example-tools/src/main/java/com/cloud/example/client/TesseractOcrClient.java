@@ -8,7 +8,6 @@ import lombok.extern.slf4j.Slf4j;
 import net.sourceforge.tess4j.ITesseract;
 import net.sourceforge.tess4j.Tesseract;
 import net.sourceforge.tess4j.TesseractException;
-import net.sourceforge.tess4j.util.LoadLibs;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -83,21 +82,5 @@ public class TesseractOcrClient {
         return result;
     }
 
-    @PostMapping(value = "/readChar", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
-    public String readChar(@RequestParam("file") MultipartFile file) throws Exception {
-        File convFile = MultipartFileToFile.multipartFileToFile(file);
-        // JNA Interface Mapping
-        ITesseract instance = new Tesseract();
-        // JNA Direct Mapping
-        // ITesseract instance = new Tesseract1();
-        //In case you don't have your own tessdata, let it also be extracted for you
-        //这样就能使用classpath目录下的训练库了
-        File tessDataFolder = LoadLibs.extractTessResources("tessdata");
-        //Set the tessdata path
-        instance.setDatapath(tessDataFolder.getAbsolutePath());
-        //英文库识别数字比较准确
-        instance.setLanguage("chi_sim");
-        return instance.doOCR(convFile);
-    }
 
 }
