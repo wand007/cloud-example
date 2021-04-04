@@ -5,10 +5,10 @@ import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 
 import java.util.concurrent.*;
 
-/*
- * @author ; lidongdong
- * @Description
- * @Date 2018/9/20
+/**
+ * @author 咚咚锵
+ * @date 2021/4/3 18:44
+ * @description 线程池
  */
 public class ThreadTack extends Thread {
 

@@ -5,7 +5,7 @@ import com.cloud.example.base.BusinessException;
 import com.cloud.example.base.ResultResponse;
 import com.cloud.example.domain.UserParam;
 import com.cloud.example.domain.ValidateGroup;
-import com.cloud.example.vo.WashCarControlParam;
+import com.cloud.example.vo.BatchParam;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.MediaType;
 import org.springframework.validation.BindingResult;
@@ -62,7 +62,7 @@ public class ValidateClient extends BaseClient {
     @PostMapping(value = "/test3", consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResultResponse test3(@NotEmpty(message = "请至少选择一个商品")
                                 @Size(max = 300, message = "最多可选300条记录")
-                                @Valid @RequestBody List<WashCarControlParam> params) {
+                                @Valid @RequestBody List<BatchParam> params) {
         return ResultResponse.success(params);
     }
 }

@@ -19,8 +19,8 @@
 
     <dependencies>
         <dependency>
-            <groupId>com.cloud.example</groupId>
-            <artifactId>dao</artifactId>
+            <groupId>com.jpa.example</groupId>
+            <artifactId>example-jpa</artifactId>
             <version>0.0.1-SNAPSHOT</version>
         </dependency>
         <dependency>
