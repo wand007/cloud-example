@@ -44,6 +44,7 @@ public class ThreadLocalService implements IThreadLocalService {
         }
         BatchParam param = new BatchParam();
         param.setBatchName("ThreadLocal名称");
+        param.setAmountTotal(BigDecimal.ZERO);
         param.setBatchDetailsParams(batchDetailsParams);
 
         threadLocalParam.set(param);
