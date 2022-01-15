@@ -12,8 +12,8 @@
         <module>core</module>
         <module>eureka</module>
         <module>example-tools</module>
-        <module>example-sso</module>
         <module>example-jpa</module>
+        <module>example-redisson</module>
     </modules>
 
     <parent>
