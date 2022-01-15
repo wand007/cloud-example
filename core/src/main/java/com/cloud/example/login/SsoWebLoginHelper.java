@@ -6,6 +6,7 @@ import com.cloud.example.utils.CookieUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -15,9 +16,9 @@ import javax.servlet.http.HttpServletResponse;
 @Component
 public class SsoWebLoginHelper {
 
-    @Autowired
+    @Resource
     SsoLoginStore ssoLoginStore;
-    @Autowired
+    @Resource
     SsoTokenLoginHelper ssoTokenLoginHelper;
 
     /**

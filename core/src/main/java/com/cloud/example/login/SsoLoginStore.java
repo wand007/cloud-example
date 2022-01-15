@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Component;
 
+import javax.annotation.Resource;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
@@ -18,7 +19,7 @@ import java.util.concurrent.TimeUnit;
 @Component
 public class SsoLoginStore {
 
-    @Autowired
+    @Resource
     RedisTemplate redisTemplate;
 
     private static int redisExpireMinite = 1440;    // 1440 minite, 24 hour
