@@ -25,7 +25,7 @@ public interface ResourceRepository extends JpaRepository<ResourceDAO, String>, 
      * @param pageable
      * @return
      */
-    @Query(value = "SELECT new com.jpa.example.jpa.domain.ResourceDAO(r.id,r.resourceName, r.resourceLogo,r.categoryId,r.createDate)" +
+    @Query(value = "SELECT new com.cloud.example.jpa.jpa.domain.ResourceDAO(r.id,r.resourceName, r.resourceLogo,r.categoryId,r.createDate)" +
             " FROM ResourceDAO r, ResourceDetailDAO rd WHERE r.id = rd.id " +
             "and ( r.id=:#{#param.getId()} or :#{#param.getId()} is null) " +
             "and ( rd.topClassId=:#{#param.getTopClassId()} or :#{#param.getTopClassId()} is null) " +

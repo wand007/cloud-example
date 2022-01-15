@@ -2,7 +2,7 @@ package com.cloud.example.redisson.client;
 
 import com.cloud.example.base.BaseClient;
 import com.cloud.example.base.ResultResponse;
-import com.cloud.example.redisson.comm.DistributedRedisLock;
+import com.cloud.example.jpa.comm.DistributedRedisLock;
 import lombok.extern.slf4j.Slf4j;
 import org.redisson.api.RedissonClient;
 import org.springframework.web.bind.annotation.RequestMapping;

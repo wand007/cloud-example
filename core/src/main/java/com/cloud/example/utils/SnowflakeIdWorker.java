@@ -1,5 +1,7 @@
 package com.cloud.example.utils;
 
+import org.springframework.stereotype.Component;
+
 /**
  * Twitter_Snowflake<br>
  * SnowFlake的结构如下(每部分用-分开):<br>
@@ -15,6 +17,7 @@ package com.cloud.example.utils;
  * @author lidongdong
  * @Date 2019/4/8
  */
+@Component
 public class SnowflakeIdWorker {
 
     // ==============================Fields===========================================
@@ -89,6 +92,9 @@ public class SnowflakeIdWorker {
      * 上次生成ID的时间截
      */
     private long lastTimestamp = -1L;
+
+    public SnowflakeIdWorker() {
+    }
 
     /**
      * 构造函数

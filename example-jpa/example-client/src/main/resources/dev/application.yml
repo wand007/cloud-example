@@ -89,3 +89,17 @@ eureka:
       enabled: true
     serviceUrl:
       defaultZone: http://127.0.0.1:8761/eureka/
+
+jpa:
+  async:
+    threadPool:
+      corePoolSize: 8 # 核心线程数
+      maximumPoolSize: 20  # 线程池中允许的最大线程数
+      keepAliveTime: 10 # 线程空闲时间
+      queueCapacity: 5000 # 任务队列容量
+  completable-future:
+    threadPool:
+      corePoolSize: 8 # 核心线程数
+      maximumPoolSize: 20  # 线程池中允许的最大线程数
+      keepAliveTime: 10 # 线程空闲时间
+      queueCapacity: 5000 # 任务队列容量

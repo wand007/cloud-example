@@ -17,7 +17,18 @@
             <artifactId>example-feign</artifactId>
             <version>0.0.1-SNAPSHOT</version>
         </dependency>
-
+        <!--加入下面的引入,可以使用junit5的版本来测试; 如果想用junit4的测试, 把exclusioins去除-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.junit.vintage</groupId>
+                    <artifactId>junit-vintage-engine</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
         <!--eureka-->
         <dependency>
             <groupId>org.springframework.cloud</groupId>
@@ -27,6 +38,10 @@
                 <exclusion>
                     <groupId>org.springframework.boot</groupId>
                     <artifactId>spring-boot-starter-tomcat</artifactId>
+                </exclusion>
+                <exclusion>
+                    <artifactId>eureka-client</artifactId>
+                    <groupId>com.netflix.eureka</groupId>
                 </exclusion>
             </exclusions>
         </dependency>
@@ -58,7 +73,11 @@
                 </exclusion>
             </exclusions>
         </dependency>
-
+        <dependency>
+            <groupId>org.redisson</groupId>
+            <artifactId>redisson</artifactId>
+            <version>3.14.0</version>
+        </dependency>
     </dependencies>
 
     <build>

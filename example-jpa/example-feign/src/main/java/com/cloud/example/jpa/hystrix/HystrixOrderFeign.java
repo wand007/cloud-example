@@ -3,6 +3,8 @@ package com.cloud.example.jpa.hystrix;
 import com.cloud.example.base.BusinessCode;
 import com.cloud.example.base.ResultResponse;
 import com.cloud.example.jpa.feign.FeignOrder;
+import com.cloud.example.jpa.param.req.OrderCreateReq;
+import com.cloud.example.jpa.param.rsp.OrderCreateRsp;
 import feign.hystrix.FallbackFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -23,6 +25,11 @@ public class HystrixOrderFeign implements FallbackFactory<FeignOrder> {
         return new FeignOrder() {
             @Override
             public ResultResponse findDetail(String id) {
+                return ResultResponse.fromBusinessCode(BusinessCode.ERROR);
+            }
+
+            @Override
+            public ResultResponse<OrderCreateRsp> save(OrderCreateReq req) {
                 return ResultResponse.fromBusinessCode(BusinessCode.ERROR);
             }
         };
