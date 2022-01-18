@@ -1,5 +1,7 @@
 package com.cloud.example.jpa.client;
 
+import com.cloud.example.base.BusinessCode;
+import com.cloud.example.base.ResultResponse;
 import com.cloud.example.jpa.aggservice.impl.OrderAggServiceImpl;
 import com.cloud.example.jpa.comm.RLockUtil;
 import com.cloud.example.jpa.jpa.dao.OrderRepository;
@@ -8,6 +10,7 @@ import com.cloud.example.jpa.jpa.dao.UserRepository;
 import com.cloud.example.jpa.jpa.domain.ResourceDAO;
 import com.cloud.example.jpa.jpa.domain.UserDAO;
 import com.cloud.example.jpa.param.req.OrderCreateReq;
+import com.cloud.example.jpa.param.rsp.OrderCreateRsp;
 import com.cloud.example.jpa.service.impl.OrderServiceImpl;
 import com.cloud.example.jpa.service.impl.ResourceServiceImpl;
 import com.cloud.example.jpa.service.impl.UserServiceImpl;
@@ -30,6 +33,9 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.TimeUnit;
+
+import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.MatcherAssert.assertThat;
 
 /**
  * @Spy和@Mock的区别：
@@ -68,6 +74,8 @@ import java.util.concurrent.TimeUnit;
  * A：
  * <p>
  * https://blog.csdn.net/qq_27376871/article/details/122512721
+ * <p>
+ * MockitoAnnotations.initMocks(this); 的一个替代方案是使用 @RunWith(MockitoJUnitRunner.class) 。
  */
 class OrderClientTest {
 
@@ -85,7 +93,7 @@ class OrderClientTest {
 
     @Spy
     UserCheckContext userCheckContext;
-//    @InjectMocks
+    //    @InjectMocks
 //    UserCheckStrategy userCheckStrategy;
     @Spy
     UserCheckOneStrategy userCheckOneStrategy;
@@ -167,7 +175,7 @@ class OrderClientTest {
         userDAO.setNickName("那个啥");
         userDAO.setPassword("没那个啥");
         userDAO.setPhoneNo("18518111111");
-        userDAO.setAvatarUrl("https://baidu.com/AvatarUrl.jpg");
+        userDAO.setAvatarUrl("https://baidu.com/avatarUrl.jpg");
         Mockito.when(userRepository.findById(Mockito.anyString()))
                 .thenReturn(Optional.of(userDAO));
         Mockito.when(orderRepository.findByUserId(Mockito.anyString()))
@@ -175,7 +183,7 @@ class OrderClientTest {
         ResourceDAO resourceDAO = new ResourceDAO();
         resourceDAO.setId(RESOURCE_ID);
         resourceDAO.setCategoryId(978675);
-        resourceDAO.setResourceLogo("https://baidu.com/ResourceLogo.jpg");
+        resourceDAO.setResourceLogo("https://baidu.com/resourceLogo.jpg");
         resourceDAO.setResourceName("那个呀");
         resourceDAO.setResourceStatus(0);
         Mockito.when(resourceRepository.findById(Mockito.anyString()))
@@ -187,6 +195,7 @@ class OrderClientTest {
         orderCreateReq.setUserId(USER_ID);
         orderCreateReq.setResourceId(RESOURCE_ID);
         orderCreateReq.setQuantity(1);
-        orderClient.save(orderCreateReq);
+        ResultResponse<OrderCreateRsp> resultResponse = orderClient.save(orderCreateReq);
+        assertThat(resultResponse.getStatusCode(), is(BusinessCode.SUCCESS.getCode()));
     }
 }
