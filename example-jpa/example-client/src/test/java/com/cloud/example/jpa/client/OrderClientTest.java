@@ -38,6 +38,11 @@ import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
 
 /**
+ * 单元测试旨在与其他组件隔离地测试组件，并且单元测试也有一个要求：执行时间要尽可能快，因为这些测试每天可能在开发人员计算机上执行数十次。
+ * <p>
+ *     @Spy和@Mock单元测试执行的速度快,需要打桩的代码多----写着麻烦,执行爽(随时都能执行)
+ *     @SpyBean和@MockBean单元测试执行的速度慢,需要打桩的代码少----写着省事,执行恶心(跑次单元测试就可以去吃饭了)
+ * <p>
  * @Spy和@Mock的区别：
  * @Spy修饰的属性里面的方法可以按照真实情况执行,在需要的时候可以打桩模拟执行结果,使用方式是Mockito.doReturn().when()--全都执行,有需要在改。
  * @Mock修饰的属性都是null,在执行单元测试的时候每个方法都需要打桩模拟执行结果,使用方式是Mockito.when().thenReturn()--全部不执行,避免意外。 <p>
@@ -57,6 +62,28 @@ import static org.hamcrest.MatcherAssert.assertThat;
  * @InjectMocks：不可以自动注入到其他实现类的属性中。修饰接口会报错。 <p>
  * <p>
  * <p>
+ * @Mock和@MockBean的直观区别： <p>
+ * @SpyBean和@MockBean会启动Spring容器(即使指定了其他启动方式),并且替换Spring对应类型的bean,能够调用真实的网络请求
+ * @Spy和@Mock生成的对象不受spring管理,也不会替换Spring对应类型的bean
+ *
+ *  <p>
+ *  <p>
+ * 解决线程导致单元测试无法覆盖执行
+ *         // 新增对异步线程里面Runnable方法的驱动
+ *         Mockito.doAnswer(
+ *         (InvocationOnMock invocation) -> {
+ *         ((Runnable) invocation.getArguments()[0]).run();
+ *         return null;
+ *         }
+ *         ).when(threadPoolTaskExecutor).execute(Mockito.any(Runnable.class));
+ *         // 新增对异步线程里面Runnable方法的驱动
+ *         Mockito.doAnswer(
+ *         (InvocationOnMock invocation) -> {
+ *         ((Runnable) invocation.getArguments()[0]).run();
+ *         return null;
+ *         }
+ *         ).when(asyncExecutor).execute(Mockito.any(Runnable.class));
+ * <p>
  * 使用建议：
  * 1、默认使用@Spy,有需要打桩模拟返回结果的情况可以自定义模拟返回结果,尽可能的覆盖更多的代码逻辑。
  * 2、对依赖项全部使用@Mock,每个依赖项都打桩模拟返回结果,有遗漏的地方会报空指针异常,在测试用例的开发阶段就能识别出来,尽可能的减少依赖项对单元测试执行结果的影响。
@@ -73,9 +100,7 @@ import static org.hamcrest.MatcherAssert.assertThat;
  * Q：@Spy、@Mock和@InjectMocks三个注解的注入规则是什么？什么时候能自动注入,什么时候需要手动赋值?
  * A：
  * <p>
- * https://blog.csdn.net/qq_27376871/article/details/122512721
- * <p>
- * MockitoAnnotations.initMocks(this); 的一个替代方案是使用 @RunWith(MockitoJUnitRunner.class) 。
+ *
  */
 class OrderClientTest {
 
