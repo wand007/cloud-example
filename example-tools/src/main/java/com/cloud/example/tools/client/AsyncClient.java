@@ -2,7 +2,7 @@ package com.cloud.example.tools.client;
 
 import com.cloud.example.base.BaseClient;
 import com.cloud.example.base.ResultResponse;
-import com.cloud.example.service.IAsyncService;
+import com.cloud.example.tools.service.IAsyncService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;

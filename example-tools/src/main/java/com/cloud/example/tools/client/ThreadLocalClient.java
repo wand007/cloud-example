@@ -2,8 +2,8 @@ package com.cloud.example.tools.client;
 
 import com.cloud.example.base.BaseClient;
 import com.cloud.example.base.ResultResponse;
-import com.cloud.example.service.IThreadLocalService;
 import com.cloud.example.thread.ExecutorProcessPool;
+import com.cloud.example.tools.service.IThreadLocalService;
 import com.cloud.example.tools.vo.BatchParam;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.PostMapping;

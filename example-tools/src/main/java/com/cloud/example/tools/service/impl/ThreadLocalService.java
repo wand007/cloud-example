@@ -1,7 +1,7 @@
 package com.cloud.example.tools.service.impl;
 
-import com.cloud.example.service.IThreadLocalService;
 import com.cloud.example.thread.ExecutorProcessPool;
+import com.cloud.example.tools.service.IThreadLocalService;
 import com.cloud.example.tools.vo.BatchDetailsParam;
 import com.cloud.example.tools.vo.BatchParam;
 import com.google.common.util.concurrent.AtomicDouble;

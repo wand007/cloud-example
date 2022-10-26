@@ -1,7 +1,7 @@
 package com.cloud.example.tools.service.impl;
 
 import com.cloud.example.config.Config;
-import com.cloud.example.service.IAsyncService;
+import com.cloud.example.tools.service.IAsyncService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
@@ -15,6 +15,21 @@ import org.springframework.stereotype.Service;
 @Service
 public class AsyncService implements IAsyncService {
 
+    @Async("asyncExecutor")
+    @Override
+    public String asyncHungry(int num) {
+        log.info("asyncHungry---------2--{}", num);
+        try {
+            log.info(Config.title);
+            log.info(String.valueOf(Config.earlyMails));
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            log.error("InterruptedException异常", e);
+        }
+        log.info("asyncHungry---------3--{}", num);
+        return "asyncHungry--" + num;
+    }
+
     @Async
     @Override
     public void async() {
@@ -24,10 +39,11 @@ public class AsyncService implements IAsyncService {
             log.info(String.valueOf(Config.earlyMails));
             Thread.sleep(1000);
         } catch (InterruptedException e) {
-            e.printStackTrace();
+            log.error("InterruptedException异常", e);
         }
         log.info("asyncGet---------3");
     }
+
     @Async
     @Override
     public void asyncException() {
@@ -35,6 +51,7 @@ public class AsyncService implements IAsyncService {
         int i = 1 / 0;
         log.info("asyncGet---------3");
     }
+
     @Async
     @Override
     public void asyncCatchException() {
