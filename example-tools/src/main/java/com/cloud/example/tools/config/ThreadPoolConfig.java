@@ -7,7 +7,9 @@ import org.springframework.core.task.AsyncTaskExecutor;
 import org.springframework.scheduling.annotation.EnableAsync;
 import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 
-import java.util.concurrent.*;
+import java.util.concurrent.LinkedBlockingQueue;
+import java.util.concurrent.ThreadPoolExecutor;
+import java.util.concurrent.TimeUnit;
 
 /**
  * @author 咚咚锵
@@ -29,7 +31,7 @@ public class ThreadPoolConfig {
 
 //        return (ThreadPoolExecutor) Executors.newFixedThreadPool(2);
 
-        return new ThreadPoolExecutor(5, 5, 3000, TimeUnit.MILLISECONDS, new LinkedBlockingQueue<>(5000));
+        return new ThreadPoolExecutor(5, 5, 3000, TimeUnit.MILLISECONDS, new LinkedBlockingQueue<>(900));
 
 //        ThreadFactory namedThreadFactory = new ThreadFactoryBuilder()
 //                .setNameFormat("recognizeBasicThreadPool-pool-%d").build();

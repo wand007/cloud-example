@@ -37,6 +37,19 @@ public class HungryClient {
         List<Future<String>> futures = new ArrayList<>();
         for (int i = 0; i < num; i++) {
             int finalI = i;
+            log.info("test1---------222222222");
+            log.info("activeCount:" + threadPoolExecutor.getActiveCount());
+            log.info("poolSize:" + threadPoolExecutor.getPoolSize());
+            log.info("largestPoolSize:" + threadPoolExecutor.getLargestPoolSize());
+            log.info("TaskCount:" + threadPoolExecutor.getTaskCount());
+            log.info("CompletedTaskCount:" + threadPoolExecutor.getCompletedTaskCount());
+            log.info("CorePoolSize:" + threadPoolExecutor.getCorePoolSize());
+            log.info("LargestPoolSize:" + threadPoolExecutor.getLargestPoolSize());
+            log.info("MaximumPoolSize:" + threadPoolExecutor.getMaximumPoolSize());
+            log.info("ActiveThreadCount:" + threadPoolExecutor.getActiveCount());
+            log.info("currentNumberOfThreads:" + threadPoolExecutor.getPoolSize());
+            log.info("QueueSize:" + threadPoolExecutor.getQueue().size());
+            log.info("test1---------3333333333 i={}", i);
             Future<String> mapFuture = threadPoolExecutor.submit(() -> iAsyncService.asyncHungry(finalI));
             futures.add(mapFuture);
         }
